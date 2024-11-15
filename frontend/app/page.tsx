@@ -95,6 +95,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        <a href="/home">welcome to course and student managment system</a>
       </footer>
     </div>
   );
