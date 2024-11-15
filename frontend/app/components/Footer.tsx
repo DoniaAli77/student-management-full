@@ -1,10 +1,17 @@
 // components/Footer.tsx
-import React from 'react';
 
 const Footer = () => {
   return (
-    <footer style={{ marginTop: '20px', textAlign: 'center' }}>
-      <p>&copy; 2024 Course and Student Management System</p>
+    <footer
+      style={{
+        backgroundColor: '#1e1e1e',
+        color: '#f5f5f5',
+        padding: '20px 0',
+        textAlign: 'center',
+        borderTop: '2px solid #333',
+      }}
+    >
+      <p style={{ margin: 0 }}>&copy; 2024 Course and Student Management System</p>
     </footer>
   );
 };

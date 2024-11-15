@@ -1,17 +1,12 @@
-// import StudentNavBar from "../components/studentNavBar";
+import Footer from '../components/Footer';
+import Navbar from '../components/NavBar';
 
-export default function StudentLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-      >
-        {/* <StudentNavBar/> */}
-        {children}
-      </body>
-    </html>
+    <>
+      <Navbar />
+     {children}
+      <Footer />
+    </>
   );
 }

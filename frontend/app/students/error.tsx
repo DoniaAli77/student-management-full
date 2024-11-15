@@ -1,5 +1,6 @@
 
 // app/students/error.tsx
+'use client'
 export default function StudentErrorPage({error,reset}:{
     error:Error,
     reset:()=>void

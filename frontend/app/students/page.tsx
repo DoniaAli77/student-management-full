@@ -2,9 +2,14 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import Link from "next/link";
+import { useRouter } from 'next/navigation'
+import { student } from "@/app/_lib/page";
 
-export default function Home() {
+
+export default function Students() {
   const [students, setStudents] = useState([]);
+  const router = useRouter()
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,48 +24,44 @@ export default function Home() {
     fetchData();
   }, []);
 
-  interface student {
-    id: string;
-    name: string;
-    age: Number;
-    courses: course[];
-  }
-  interface course {
-    id: string;
-    name: string;
-  }
+
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold text-blue-600 mb-6">Student List</h1>
-      <Link href="/students/add">Add New Student</Link>
+    <div className="flex flex-col items-center min-h-screen bg-[#121212] p-6">
+      <h1 className="text-3xl font-bold text-white mb-8">Student List</h1>
+      
+      {/* Add New Student Button */}
+      <Link
+        href="/students/add"
+        className="mb-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-500 transition duration-300"
+      >
+        Add New Student
+      </Link>
 
-      <ul className="w-full max-w-md bg-white shadow-md rounded-lg p-4">
+      {/* Student List */}
+      <ul className="w-full max-w-lg bg-[#1f1f1f] rounded-lg shadow-md p-6">
         {students.map((student: student) => (
           <li
-            key={student.id}
-            className="p-4 border-b border-gray-200 last:border-none hover:bg-gray-50 transition text-gray-800"
+            key={student._id.toString()}
+            className="p-4 border-b border-[#444] last:border-none hover:bg-[#2d2d2d] transition text-gray-200"
           >
-            <Link href={`/student/${student.id}`}> {student.name}</Link>
+            <Link
+              href={`/students/${student._id}`}
+              className="text-lg font-semibold hover:text-blue-400"
+            >
+              {'Name: '+ student.name}
+             
+            </Link>
+            <button
+        type="button"
+        onClick={()=> router.push(`/students/${student._id}/update`)}
+        className="w-full py-2 bg-blue-600 text-white rounded-md mt-4 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300"
+      >
+        Update Student
+      </button>
           </li>
         ))}
       </ul>
     </div>
   );
 }
-
-// export default async function Home() {
-//   const data = await fetch("http://localhost:3001/students");
-//   interface student {
-//     id: string;
-//     name: string;
-//   }
-//   const students = await data.json();
-//   return (
-//     <ul>
-//       {students.map((student: student) => (
-//         <li key={student.id}>{student.name}</li>
-//       ))}
-//     </ul>
-//   );
-// }

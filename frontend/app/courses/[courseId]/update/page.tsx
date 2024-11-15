@@ -1,15 +1,22 @@
 // app/students/[id]/edit/page.tsx
-import CourseForm from '@/app/components/CourseForm';
-import { useRouter } from 'next/router';
+import { course } from "@/app/_lib/page";
+import CourseForm from "@/app/components/CourseForm";
+type Params = Promise<{
+  courseId: string;
+}>;
 
-export default function EditCoursePage() {
-  const router = useRouter();
-  const { courseId } = router.query;
+
+export default async function EditCoursePage(props: { params: Params }) {
+  const params = await props.params;
+  const courseId = params.courseId;
+  const data = await fetch(`http://localhost:3001/course/${courseId}`);
+  const courseInfo:course=await data.json()
+
 
   return (
-    <div>
-      <h2>Edit Student {courseId}</h2>
-      <CourseForm />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#121212] text-white p-6">
+      <h2 className="text-3xl font-bold mb-6">Edit Student {courseId}</h2>
+      <CourseForm edit={true} courseInfo={courseInfo}/>
     </div>
   );
 }

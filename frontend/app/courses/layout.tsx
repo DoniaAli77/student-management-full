@@ -1,17 +1,12 @@
-// import CourseNavbar from "../components/courseNavBar";
+import Footer from '../components/Footer';
+import Navbar from '../components/NavBar';
 
-export default function CourseLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-      >
-        {/* <CourseNavbar/> */}
-        {children}
-      </body>
-    </html>
+    <>
+      <Navbar />
+     {children}
+      <Footer />
+    </>
   );
 }
