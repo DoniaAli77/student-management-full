@@ -1,5 +1,5 @@
 export default function Enrollement(){
 return(<>
-<p>hiiiiiiiiiiiiiii</p>
+<p>Enrollments</p>
 </>)
 }

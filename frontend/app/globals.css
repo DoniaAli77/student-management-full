@@ -34,4 +34,8 @@ html, body {
 main {
   flex: 1; /* Makes sure content grows to fill available space */
 }
+input {
+  border: 2px solid #000;
+  font-size: 15px;
+}
 

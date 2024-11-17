@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
-import { student } from "@/app/_lib/page";
+import { student } from "@/app/model";
 
 
 export default function Students() {
