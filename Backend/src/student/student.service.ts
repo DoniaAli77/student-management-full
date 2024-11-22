@@ -27,12 +27,15 @@ export class StudentService {
     // Get all students
     async findAll(): Promise<studentDocument[]> {
         let students= await this.studentModel.find();  // Fetch all students from the database
+        console.log(students)
         return students
     }
 
     // Get a student by ID
     async findById(id: string): Promise<studentDocument> {
-        return await this.studentModel.findById(id);  // Fetch a student by ID
+        console.log(id)
+        const student=  await this.studentModel.findById(id);  // Fetch a student by ID
+        return student
     }
 
     // Update a student's details by ID

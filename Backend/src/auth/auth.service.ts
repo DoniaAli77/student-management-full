@@ -31,12 +31,12 @@ export class AuthService {
           }
         console.log("password: ", user.password);
         const isPasswordValid = await bcrypt.compare(password, user.password);
-
+          console.log( await bcrypt.compare(password, user.password))
         if (!isPasswordValid) {
             throw new UnauthorizedException('Invalid credentials');
           }
 
-        const payload = { userid: user._id, username: user.name };
+        const payload = { userid: user._id, role: user.role };
 
         return {
             access_token: await this.jwtService.signAsync(payload),

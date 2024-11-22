@@ -1,6 +1,5 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards, HttpException, Res, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.gaurd';
 import { RegisterRequestDto } from './dto/RegisterRequestDto';
 import { SignInDto } from './dto/SignInDto';
 
@@ -11,6 +10,7 @@ export class AuthController {
   @Post('login')
   async signIn(@Body() signInDto: SignInDto, @Res({ passthrough: true }) res) {
     try {
+      console.log('helllo')
       const result = await this.authService.signIn(signInDto.email, signInDto.password);
 
       res.cookie('token', result.access_token, {
@@ -80,9 +80,4 @@ export class AuthController {
   
 
 
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  getProfile(@Req() req) {
-    return req.user;
-  }
 }

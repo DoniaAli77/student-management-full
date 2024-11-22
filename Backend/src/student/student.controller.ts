@@ -1,21 +1,40 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { student } from './models/student.schema';
 import { createStudentDTo } from './dto/createstudent.dto';
 import { updateStudentDTo } from './dto/updateStudent.dto';
-import { promises } from 'dns';
+import { AuthGuard } from 'src/auth/guards/authentication.guard';
+import { Public } from 'src/auth/decorators/public.decorator';
+import { Role, Roles } from 'src/auth/decorators/roles.decorator';
+import { authorizationGaurd } from 'src/auth/guards/authorization.gaurd';
 
+@UseGuards(AuthGuard) //class level
 @Controller('students') // it means anything starts with /student
 export class StudentController {
     constructor(private studentService: StudentService) { }
     //The StudentService is injected through the class constructor. 
     //Notice the use of the private syntax. 
     //This shorthand allows us to both declare and initialize the studentService member immediately in the same location.
-    @Get()
+
+
+    // @UseGuards(AuthGuard) handler level
+    @Public()
+    @Get() 
     // Get all students
     async getAllStudents(): Promise<student[]> {
         return await this.studentService.findAll();
     }
+
+    @Get('currentUser')
+    async getCurrentUser(@Req() {user}): Promise<student> {
+        const student = await this.studentService.findById(user.userid);
+        console.log(student)
+        return student;
+    }
+
+
+    @Roles(Role.User)
+    @UseGuards(authorizationGaurd)
     @Get(':id')// /student/:id
     // Get a single student by ID
     async getStudentById(@Param('id') id: string):Promise<student> {// Get the student ID from the route parameters

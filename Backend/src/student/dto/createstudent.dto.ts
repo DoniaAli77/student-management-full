@@ -4,6 +4,7 @@ export class createStudentDTo {
     email:string
     name: string;
     age: Number;
+    role:string
     courses: course[];
     password:string
   }
