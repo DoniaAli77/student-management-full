@@ -1,3 +1,8 @@
-export default function DefaultCourses(){
-    return (<div><h1>Hello from Default{"     "}</h1></div>)
+"use client";
+
+import Courses from "@/app/courses/page";
+
+export default function CoursesSlot() {
+  return(<Courses/>)
+  
 }

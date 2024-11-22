@@ -1,9 +1,12 @@
 import { course } from "src/courses/models/course.schema";
 
-export class createStudentDTo {
+
+export class RegisterRequestDto {
+   
     email:string
     name: string;
     age: Number;
-    courses: course[];
+    courses:course[]=[]
     password:string
+    role:string= "student"
   }

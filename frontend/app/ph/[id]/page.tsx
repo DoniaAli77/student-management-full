@@ -1,12 +1,11 @@
 import wondersImages, { WonderImage } from "@/app/photo-feed/wonders";
 import Image from "next/image";
 
-export default async function PhotoPage({
-  params,
+export default function PhotoPage({
+  params: { id },
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const{id}= await params
   const photo: WonderImage = wondersImages.find((p) => p.id === id)!;
   return (
     <div className="container mx-auto my-10">

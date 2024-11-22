@@ -134,6 +134,21 @@ const Dashboard = () => {
               Intercipting routes
             </Link>
             </li>
+            <li>
+            <Link
+              href="/f1"
+              style={{
+                color: "#f5f5f5",
+                textDecoration: "none",
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                transition: "color 0.3s ease",
+              }}
+              
+            >
+              Intercipting routes v2
+            </Link>
+            </li>
         </ul>
       </nav>
     </div>
