@@ -8,22 +8,17 @@ import { Public } from 'src/auth/decorators/public.decorator';
 import { Role, Roles } from 'src/auth/decorators/roles.decorator';
 import { authorizationGaurd } from 'src/auth/guards/authorization.gaurd';
 
-@UseGuards(AuthGuard) //class level
+// @UseGuards(AuthGuard) //class level
 @Controller('students') // it means anything starts with /student
 export class StudentController {
     constructor(private studentService: StudentService) { }
-    //The StudentService is injected through the class constructor. 
-    //Notice the use of the private syntax. 
-    //This shorthand allows us to both declare and initialize the studentService member immediately in the same location.
-
-
-    // @UseGuards(AuthGuard) handler level
     @Public()
     @Get() 
     // Get all students
     async getAllStudents(): Promise<student[]> {
         return await this.studentService.findAll();
     }
+    @UseGuards(AuthGuard)// handler level
 
     @Get('currentUser')
     async getCurrentUser(@Req() {user}): Promise<student> {

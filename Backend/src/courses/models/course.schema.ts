@@ -1,4 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+export type courseDocument = HydratedDocument<course> // to _id property to the class
 
 @Schema()
 export class course {

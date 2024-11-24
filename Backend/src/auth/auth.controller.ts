@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards, HttpException, Res, Req } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post, HttpException, Res, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterRequestDto } from './dto/RegisterRequestDto';
 import { SignInDto } from './dto/SignInDto';
@@ -6,7 +6,6 @@ import { SignInDto } from './dto/SignInDto';
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) {}
-
   @Post('login')
   async signIn(@Body() signInDto: SignInDto, @Res({ passthrough: true }) res) {
     try {
@@ -22,7 +21,7 @@ export class AuthController {
       return {
         statusCode: HttpStatus.OK,
         message: 'Login successful',
-        data: result,
+        user: result.payload,
       };
     } catch (error) {
         console.log(error)
