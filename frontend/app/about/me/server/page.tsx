@@ -1,9 +1,9 @@
 import { cookies } from 'next/headers'
-import { MyClientComponent } from './clientComponent'
 
-export default async function About() {
+export default async function Server() {
     // Server-side: based on HTTP resquest cookie only
     const cookieFromServer = (await cookies()).get('CookieFromServer')?.value
     console.log((await cookies()).get('CookieFromServer'))
-    return <MyClientComponent initial={{ cookieClient:cookieFromServer }} />
+    return(<><h1> hi from server component</h1>
+    <p> cookies is extracted from next headers {cookieFromServer} </p></>)
 }
