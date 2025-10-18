@@ -9,7 +9,7 @@ export class StudentService {
   
 
     constructor(
-        @InjectModel(student.name) private studentModel: mongoose.Model<student>
+        @InjectModel(student.name) private studentModel: mongoose.Model<studentDocument>
     ) { }
 
     async create(studentData: student): Promise<studentDocument> {

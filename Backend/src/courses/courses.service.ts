@@ -7,7 +7,7 @@ import { updateCourseDTo } from './dto/updateCourse.dto';
 @Injectable()
 export class CoursesService {
     constructor(
-        @InjectModel(course.name) private courseModel: mongoose.Model<course>
+        @InjectModel(course.name) private courseModel: mongoose.Model<courseDocument>
     ) { }
 
     // create a course
