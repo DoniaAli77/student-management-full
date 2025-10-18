@@ -1,4 +1,4 @@
-import { IsEmail, IsInt, isInt, IsString } from "class-validator";
+import { IsArray, IsEmail, IsInt, isInt, IsString } from "class-validator";
 import { course } from "src/courses/models/course.schema";
 
 
@@ -12,8 +12,8 @@ export class RegisterRequestDto {
 
   @IsInt()
   age: Number;
-
-  courses: course[] = []
+@IsArray()
+  courses: course[]
 
   @IsString()
   password: string

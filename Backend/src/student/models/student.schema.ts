@@ -22,7 +22,7 @@ export class student {
   @Prop({ required: true })
   age: Number;
 
-  @Prop({ type: [{ type:  mongoose.Schema.Types.ObjectId, ref: 'course' }] })
+  @Prop({ type: [{ type:  [mongoose.Schema.Types.ObjectId], ref: course.name }] })
   courses: course[];
 }
 
