@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { course, courseDocument } from 'src/courses/models/course.schema';
-import { updateCourseDTo } from './dto/updateStudent.dto';
+import { updateCourseDTo } from './dto/updateCourse.dto';
 
 @Injectable()
 export class CoursesService {
