@@ -29,13 +29,13 @@ export class CoursesController {
     }
     // Update a course's details
     @Put(':id')
-    async updateStudent(@Param('id') id:string,@Body()courseData: updateCourseDTo):Promise<courseDocument> {
+    async updateCourse(@Param('id') id:string,@Body()courseData: updateCourseDTo):Promise<courseDocument> {
         const updatedCourse = await this.courseService.update(id, courseData);
         return updatedCourse;      
     }
     // Delete a course by ID
     @Delete(':id')
-    async deleteStudent(@Param('id')id:string):Promise<courseDocument> {
+    async deleteCourse(@Param('id')id:string):Promise<courseDocument> {
         const deletedCourse = await this.courseService.delete(id);
        return deletedCourse;
     }

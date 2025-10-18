@@ -1,7 +1,11 @@
+import { IsInt, IsString } from "class-validator";
 import { course } from "src/courses/models/course.schema";
 
 export class updateStudentDTo {
-    name?: string;
-    age?: Number;
-    courses?: course[];
-  }
+  @IsString()
+  name?: string;
+
+  @IsInt()
+  age?: Number;
+  courses?: course[];
+}

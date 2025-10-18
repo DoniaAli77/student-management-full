@@ -2,17 +2,17 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { StudentController } from './student.controller';
 import { StudentService } from './student.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { StudentSchema } from './models/student.schema';
-import { AuthenticationMiddleware } from 'src/auth/middleware/authentication.middleware';
+import { student, StudentSchema } from './models/student.schema';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from 'src/auth/guards/authentication.guard';
 
 @Module({
-  imports:[ MongooseModule.forFeature([{ name: 'student', schema: StudentSchema }])],
+  imports:[ MongooseModule.forFeature([{ name: student.name, schema: StudentSchema }])],
   controllers: [StudentController],
   providers: [StudentService],
   exports:[StudentService]
 })
+export class StudentModule{}
 
 // @Module({
 //   imports:[ MongooseModule.forFeature([{ name: 'student', schema: StudentSchema }])],
@@ -32,7 +32,31 @@ import { AuthGuard } from 'src/auth/guards/authentication.guard';
 //     consumer
 //       .apply(AuthenticationMiddleware)
 //       .forRoutes(StudentController);
+//.apply(LoggerMiddleware)
+//.forRoutes({ path: 'users', method: RequestMethod.GET });  // only GET /users
 //   }
 // }{}
+/*Middleware in NestJS is built on top of Express (or Fastify).
+It runs before NestJS creates its internal context (before it knows what controller or route is next).
 
-export class StudentModule{}
+That means middleware:
+
+❌ Can’t use decorators like @Roles()
+
+❌ Can’t use Reflector to read metadata
+
+❌ Doesn’t know which controller method is about to run
+
+❌ Doesn’t have access to the ExecutionContext object
+
+❌ Can’t easily return HTTP exceptions (it must manually send responses)
+
+Guards, however:
+
+✅ Run after NestJS identifies the route
+
+✅ Can read metadata from decorators
+
+✅ Can throw NestJS exceptions easily
+
+✅ Work across HTTP, GraphQL, and WebSockets*/

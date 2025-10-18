@@ -3,13 +3,12 @@ import { AuthService } from './auth.service';
 import { RegisterRequestDto } from './dto/RegisterRequestDto';
 import { SignInDto } from './dto/SignInDto';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
     constructor(private authService: AuthService) {}
   @Post('login')
   async signIn(@Body() signInDto: SignInDto, @Res({ passthrough: true }) res) {
     try {
-      console.log('helllo')
       const result = await this.authService.signIn(signInDto.email, signInDto.password);
 
       res.cookie('token', result.access_token, {

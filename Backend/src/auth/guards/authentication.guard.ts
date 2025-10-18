@@ -50,3 +50,8 @@ export class AuthGuard implements CanActivate {
         return token;
     }
 }
+//ExecutionContext: it like a container that holds everything about the current request, including:
+
+//The type of request (HTTP, WebSocket, RPC…)
+//The controller class handling it
+//The method (route handler) being executed
