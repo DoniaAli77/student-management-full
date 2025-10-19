@@ -19,7 +19,7 @@ export class student {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true ,min:18})
   age: Number;
 
   @Prop({ type: [{ type:  [mongoose.Schema.Types.ObjectId], ref: course.name }] })

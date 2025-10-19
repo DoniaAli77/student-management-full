@@ -1,4 +1,4 @@
-import { IsArray, IsEmail, IsInt, IsString, Min } from "class-validator";
+import { IsArray, IsEmail, IsInt, IsOptional, IsString, Min } from "class-validator";
 import { course } from "src/courses/models/course.schema";
 
 export class createStudentDTo {
@@ -15,7 +15,6 @@ export class createStudentDTo {
 
     @IsString()
     role:string
-    @IsArray()
     courses: course[];
 
     @IsString()
