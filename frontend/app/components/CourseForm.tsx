@@ -10,7 +10,7 @@ export default function CourseForm({edit, courseInfo}:{
   courseInfo?:course
 }) {
   const [name, setName] = useState(edit?courseInfo!.name:'');
-  const [id, setId] = useState(edit? courseInfo!.code: 0);
+  const [code, setCode] = useState(edit? courseInfo!.code: '');
   const [message, setMessage]=useState('')
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ export default function CourseForm({edit, courseInfo}:{
         await axiosInstance.put(`/courses/${courseInfo!._id}`,{name})
         setMessage('updated successfuly')
       }else{
-        await axiosInstance.post(`/courses/`,{id,name})
+        await axiosInstance.post(`/courses/`,{ code,name})
         
         setMessage('added successfuly')
 
@@ -38,12 +38,12 @@ console.log(error)
       className="flex flex-col items-center bg-[#1f1f1f] p-6 rounded-lg shadow-md w-full max-w-sm"
     >
       <div className="mb-4 w-full">
-        <label className="block text-lg text-white mb-2">ID</label>
+        <label className="block text-lg text-white mb-2">code</label>
         <input
           type="text"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          placeholder="Enter course id"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          placeholder="Enter course code"
           
           className="w-full p-2 bg-[#333333] text-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
