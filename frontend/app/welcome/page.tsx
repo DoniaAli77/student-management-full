@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import axiosInstance from "../utils/axiosInstance";
 import { getCookie } from "cookies-next";
-let backend_url = "http://localhost:3001";
+let backend_url = "http://localhost:3000";
 
 export default  function WelcomPage() {
     const cookie = getCookie("token");

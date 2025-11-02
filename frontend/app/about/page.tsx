@@ -5,5 +5,6 @@ export default async function About() {
     // Server-side: based on HTTP resquest cookie only
     const cookieFromServer = (await cookies()).get('CookieFromServer')?.value
     console.log((await cookies()).get('CookieFromServer'))
-    return <MyClientComponent initial={{ cookieClient:cookieFromServer }} />
+    return (<>hi from original about</>)
+    // return <MyClientComponent initial={{ cookieClient:cookieFromServer }} />
 }
