@@ -16,7 +16,7 @@ export default function CourseForm({edit, courseInfo}:{
     e.preventDefault();
     try {
       if(edit){
-        await axiosInstance.put(`/students/${courseInfo!._id}`,{name})
+        await axiosInstance.put(`/courses/${courseInfo!._id}`,{name})
         setMessage('updated successfuly')
       }else{
         await axiosInstance.post(`/courses/`,{id,name})

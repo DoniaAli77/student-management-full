@@ -25,9 +25,11 @@ export default function StudentForm({
         setMessage("updated successfuly");
       } else {
           await axiosInstance.post(`/students/`, {
-          id: 123,
           name,
           age,
+          email:`${name}@gmail.com`,
+          role:'student',
+          password:'123456',// as default
           courses: [],
         });
         setMessage("added successfuly");
