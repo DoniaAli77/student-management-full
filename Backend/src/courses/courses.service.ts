@@ -5,6 +5,9 @@ import { course, courseDocument } from 'src/courses/models/course.schema';
 import { updateCourseDTo } from './dto/updateCourse.dto';
 import { StudentService } from 'src/student/student.service';
 import { studentDocument } from 'src/student/models/student.schema';
+import { populate } from 'dotenv';
+import { Types } from 'mongoose';
+
 
 @Injectable()
 export class CoursesService {
@@ -41,27 +44,34 @@ export class CoursesService {
 
     // Get a student courses
     async getStudentCourses(studentId: string): Promise<courseDocument[]> {
-        const user = await (await this.studentService.findById(studentId)).populate<{ courses: courseDocument[]}>('courses');
+        const user = await (await this.studentService.findById(studentId)).populate<{ courses: courseDocument[] }>('courses');
         return user.courses;
     }
 
     async addStudentCourse(studentId: string, courseId: string): Promise<studentDocument> {
 
-        const user = await this.studentService.findById(studentId);
+        const user = await this.studentService.findById(studentId,false);
         const course = await this.courseModel.findById(courseId);
         const courseIdStr = course._id.toString();
+        let courses = user.courses;
         if (!user.courses.map(id => id.toString()).includes(courseIdStr)) {
             user.courses.push(course._id as any);
-        } const newUser = await user.save(); // save here works as update
+        } 
+        const courseStrings = courses.map((id) => id.toString());
+        const newUser = this.studentService.update(studentId, { courses:courseStrings })
         return newUser
 
 
     }
     async dropStudentCourse(studentId: string, courseId: string): Promise<studentDocument> {
-        const user = await this.studentService.findById(studentId);
-        const course = await this.courseModel.findById(courseId);
-        user.courses = user.courses.filter(id => id.toString() !== course._id.toString());
-        const newUser = await user.save();
+        const user = await this.studentService.findById(studentId, false);
+        const course: courseDocument = await this.courseModel.findById(courseId);
+        let courses = user.courses.filter(
+            (id) => id.toString() !== course._id.toString()
+
+        ); 
+        const courseStrings = courses.map((id) => id.toString());
+        const newUser = this.studentService.update(studentId, { courses:courseStrings })
         return newUser;
     }
 

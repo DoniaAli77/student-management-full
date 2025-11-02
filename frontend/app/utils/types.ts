@@ -8,6 +8,8 @@ export interface student{
     id:string,
     name:string,
     age:number,
+    email:string,
+     role:string,
     courses:string[]
 
 }

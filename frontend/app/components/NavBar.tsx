@@ -62,6 +62,20 @@ const Navbar = () => {
             Enrollments
           </Link>
         </li>
+        <li style={{ margin: '0 15px' }}>
+
+        <Link
+            href="/manage-enrollments"
+            style={{
+              color: '#f5f5f5',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+            }}
+          >
+            Manage Enrollments
+          </Link>
+                  </li>
+
        
       </ul>
     </nav>

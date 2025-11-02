@@ -9,6 +9,7 @@ import { Role, Roles } from 'src/auth/decorators/roles.decorator';
 import { authorizationGaurd } from 'src/auth/guards/authorization.gaurd';
 import { CoursesService } from 'src/courses/courses.service';
 import { courseDocument } from 'src/courses/models/course.schema';
+import { StudentListItemDTO } from './dto/StudentListItemDTO.dto';
 
 //  @UseGuards(AuthGuard) //class level
 @Controller('students') // it means anything starts with /students
@@ -17,7 +18,7 @@ export class StudentController {
     // @Public()
     @Get() 
     // Get all students
-    async getAllStudents(): Promise<studentDocument[]> {
+    async getAllStudents(): Promise<StudentListItemDTO[]> {
         let result=await this.studentService.findAll();
         console.log(result[0]._id)
         return result 
@@ -37,7 +38,7 @@ export class StudentController {
     @Get(':id')// /students/:id
     // Get a single student by ID
     async getStudentById(@Param('id') id: string):Promise<studentDocument> {// Get the student ID from the route parameters
-        const student = await this.studentService.findById(id);
+        const student = await this.studentService.findById(id,true);
         return student;
     }
 
@@ -80,7 +81,7 @@ export class StudentController {
     // add course to specific student
     // @Roles(Role.Admin)
     // @UseGuards(authorizationGaurd)
-     @Put(':studentId/courses/add/:courseId')// /students/:studentId/courses/add/:courseId
+     @Put(':studentId/courses/enroll/:courseId')// /students/:studentId/courses/add/:courseId
     async addStudentCourse(@Param('studentId') studentId: string,@Param('courseId') courseId: string):Promise<studentDocument> {// Get the student ID from the route parameters
         const course = await this.courseService.addStudentCourse(studentId,courseId);
         return course;
@@ -88,7 +89,7 @@ export class StudentController {
     // remove a course from specific student
     // @Roles(Role.Admin)
     // @UseGuards(authorizationGaurd)
-    @Put(':studentId/courses/remove/:courseId')// /students/:studentId/courses/remove/:courseId
+    @Put(':studentId/courses/unenroll/:courseId')// /students/:studentId/courses/remove/:courseId
     async dropStudentCourse(@Param('studentId') studentId: string,@Param('courseId') courseId: string):Promise<studentDocument> {// Get the student ID from the route parameters
         const course = await this.courseService.dropStudentCourse(studentId,courseId);
         return course;

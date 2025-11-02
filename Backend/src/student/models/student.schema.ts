@@ -20,10 +20,10 @@ export class student {
   password: string;
 
   @Prop({ required: true, min: 18 })
-  age: Number;
+  age: number;
 
   @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'course' ,default: [] })
-  courses: mongoose.Types.ObjectId[];
+  courses: mongoose.Types.ObjectId[]| courseDocument[];
 }
 
 export const StudentSchema = SchemaFactory.createForClass(student);
