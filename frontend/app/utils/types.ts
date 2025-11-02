@@ -1,6 +1,6 @@
 export interface course{
     _id:object,
-    id:string,
+    code:string,
     name:string,
 }
 export interface student{
@@ -8,6 +8,6 @@ export interface student{
     id:string,
     name:string,
     age:number,
-    courses:course[]
+    courses:string[]
 
 }

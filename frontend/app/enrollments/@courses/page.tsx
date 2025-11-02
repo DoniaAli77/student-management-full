@@ -3,6 +3,5 @@
 import Courses from "@/app/courses/page";
 
 export default function CoursesSlot() {
-  return(<Courses/>)
-  
+  return <Courses />;
 }

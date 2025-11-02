@@ -2,13 +2,13 @@
 import axiosInstance from "@/app/utils/axiosInstance";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-let backend_url = "http://localhost:3001";
+let backend_url = "http://localhost:3000";
 
 export default async function login(prevState:any,formData:FormData){
     const cookieStrore=await cookies()
     console.log(formData.get('email'))
     try{
-    const response = await axiosInstance.post(`${backend_url}/auth/login`, {
+    const response = await axiosInstance.post(`/login`, {
       email:formData.get('email'),
       password: formData.get('password')
       });

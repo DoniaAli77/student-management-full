@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import axiosInstance from "@/app/utils/axiosInstance";
 import login from "./login.server";
 
-let backend_url = "http://localhost:3001";
+let backend_url = "http://localhost:3000";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");

@@ -1,15 +1,14 @@
 export interface course{
         _id:object,
-        id:string,
+        code:string,
         name:string,
     }
 export interface student{
         _id:object,
-        id:string,
         name:string,
         role:string
         age:number,
-        courses:course[]
+        courses:string[]
 
     }
 
@@ -19,7 +18,7 @@ export interface student{
         name:string,
         role:string
         age:number,
-        courses:course[]
+        courses:string[]
 
     }
       export interface AuthResponse {

@@ -1,6 +1,7 @@
 // app/students/[id]/page.tsx
 
 import { student } from "@/app/_lib/page";
+import axiosInstance from "@/app/utils/axiosInstance";
 
 export default async function StudentDetailsPage({
   params,
@@ -12,8 +13,8 @@ export default async function StudentDetailsPage({
 
 
   const { studentId } = await params;
-  const data = await fetch(`http://localhost:3001/students/${studentId}`);
-  const studentInfo:student=await data.json()
+  const response = await axiosInstance<student>(`/students/${studentId}`);
+  const studentInfo=response.data
 
 
   return (

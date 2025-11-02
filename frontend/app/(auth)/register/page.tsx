@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axiosInstance from '@/app/utils/axiosInstance';
-let backend_url = "http://localhost:3001";
+let backend_url = "http://localhost:3000";
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -14,7 +14,7 @@ export default function RegisterPage() {
     e.preventDefault();
     try{ 
          const response = await axiosInstance.post(
-        `${backend_url}/auth/register`,
+        `/register`,
         {
          email,
          password,

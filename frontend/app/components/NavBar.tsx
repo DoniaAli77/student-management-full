@@ -16,7 +16,7 @@ const Navbar = () => {
       >
         <li style={{ margin: '0 15px' }}>
           <Link
-            href="/"
+            href="/home"
             style={{
               color: '#f5f5f5',
               textDecoration: 'none',
