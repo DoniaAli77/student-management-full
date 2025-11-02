@@ -5,7 +5,7 @@ export type courseDocument = HydratedDocument<course> // to _id property to the 
 @Schema()
 export class course {
   @Prop({ required: true })
-  id: string;
+  code: string;
 
   @Prop({ required: true })
   name: string;

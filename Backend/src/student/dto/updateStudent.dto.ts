@@ -1,4 +1,4 @@
-import { IsArray, IsInt, IsOptional, IsString } from "class-validator";
+import { IsArray, IsInt, IsMongoId, IsOptional, IsString, Min } from "class-validator";
 import { course } from "src/courses/models/course.schema";
 
 export class updateStudentDTo {
@@ -8,8 +8,11 @@ export class updateStudentDTo {
 
   @IsOptional()
   @IsInt()
-  age?: Number;
+  @Min(18)
+  age?: number;
+  
   @IsOptional()
   @IsArray()
-  courses?: course[];
+  @IsMongoId({ each: true })
+  courses?: string[];
 }

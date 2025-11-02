@@ -1,7 +1,7 @@
 
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory, } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { course} from '../../courses/models/course.schema';
+import { course, courseDocument } from '../../courses/models/course.schema';
 
 export type studentDocument = HydratedDocument<student>
 
@@ -10,7 +10,7 @@ export class student {
   @Prop({ required: true, })
   email: string;
 
-  @Prop({ required: true})
+  @Prop({ required: true })
   role: string;
 
   @Prop({ required: true })
@@ -19,11 +19,11 @@ export class student {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ required: true ,min:18})
+  @Prop({ required: true, min: 18 })
   age: Number;
 
-  @Prop({ type: [{ type:  [mongoose.Schema.Types.ObjectId], ref: course.name }] })
-  courses: course[];
+  @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'course' ,default: [] })
+  courses: mongoose.Types.ObjectId[];
 }
 
 export const StudentSchema = SchemaFactory.createForClass(student);

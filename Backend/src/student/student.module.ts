@@ -1,13 +1,14 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { forwardRef, MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { StudentController } from './student.controller';
 import { StudentService } from './student.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { student, StudentSchema } from './models/student.schema';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from 'src/auth/guards/authentication.guard';
+import { CoursesModule } from 'src/courses/courses.module';
 
 @Module({
-  imports:[ MongooseModule.forFeature([{ name: student.name, schema: StudentSchema }])],
+  imports:[ MongooseModule.forFeature([{ name: student.name, schema: StudentSchema }]), forwardRef(() => CoursesModule),],
   controllers: [StudentController],
   providers: [StudentService],
   exports:[StudentService]

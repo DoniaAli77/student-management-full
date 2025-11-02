@@ -1,7 +1,12 @@
-import { IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 
 export class updateCourseDTo {
-      @IsString()
-    name: string;
-    
-  }
+  @IsOptional()
+  @IsString()
+  name?: string;
+
+  @IsOptional()
+  @IsString()
+  code?: string;
+
+}

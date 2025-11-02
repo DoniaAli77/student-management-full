@@ -2,7 +2,7 @@ import { IsString } from "class-validator";
 
 export class createCourseDTo {
     @IsString()
-    id: string;
+    code: string;
     @IsString()
     name: string;
   }

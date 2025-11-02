@@ -1,5 +1,5 @@
-import { IsArray, IsEmail, IsInt, isInt, IsOptional, IsString } from "class-validator";
-import { course } from "src/courses/models/course.schema";
+import { IsArray, IsEmail, IsInt, isInt, IsMongoId, IsOptional, IsString } from "class-validator";
+import { course, courseDocument } from "src/courses/models/course.schema";
 
 
 export class RegisterRequestDto {
@@ -11,9 +11,12 @@ export class RegisterRequestDto {
   name: string;
 
   @IsInt()
-  age: Number;
+  age: number;
+
+  @IsOptional()
   @IsArray()
-  courses: course[]
+  @IsMongoId({ each: true })
+  courses?: string[];
 
   @IsString()
   password: string

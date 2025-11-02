@@ -3,11 +3,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { course, courseDocument } from 'src/courses/models/course.schema';
 import { updateCourseDTo } from './dto/updateCourse.dto';
+import { StudentService } from 'src/student/student.service';
+import { studentDocument } from 'src/student/models/student.schema';
 
 @Injectable()
 export class CoursesService {
     constructor(
-        @InjectModel(course.name) private courseModel: mongoose.Model<courseDocument>
+        @InjectModel(course.name) private courseModel: mongoose.Model<courseDocument>, private studentService: StudentService
     ) { }
 
     // create a course
@@ -18,7 +20,7 @@ export class CoursesService {
 
     // Get all courses
     async findAll(): Promise<courseDocument[]> {
-        let courses= await this.courseModel.find();  // Fetch all students from the database
+        let courses = await this.courseModel.find();  // Fetch all students from the database
         return courses
     }
 
@@ -36,6 +38,33 @@ export class CoursesService {
     async delete(id: string): Promise<courseDocument> {
         return await this.courseModel.findByIdAndDelete(id);  // Find and delete the student
     }
+
+    // Get a student courses
+    async getStudentCourses(studentId: string): Promise<courseDocument[]> {
+        const user = await (await this.studentService.findById(studentId)).populate<{ courses: courseDocument[]}>('courses');
+        return user.courses;
+    }
+
+    async addStudentCourse(studentId: string, courseId: string): Promise<studentDocument> {
+
+        const user = await this.studentService.findById(studentId);
+        const course = await this.courseModel.findById(courseId);
+        const courseIdStr = course._id.toString();
+        if (!user.courses.map(id => id.toString()).includes(courseIdStr)) {
+            user.courses.push(course._id as any);
+        } const newUser = await user.save(); // save here works as update
+        return newUser
+
+
+    }
+    async dropStudentCourse(studentId: string, courseId: string): Promise<studentDocument> {
+        const user = await this.studentService.findById(studentId);
+        const course = await this.courseModel.findById(courseId);
+        user.courses = user.courses.filter(id => id.toString() !== course._id.toString());
+        const newUser = await user.save();
+        return newUser;
+    }
+
 }
 
 
