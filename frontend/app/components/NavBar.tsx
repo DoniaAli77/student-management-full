@@ -83,7 +83,7 @@ const Navbar = () => {
            </li>
         <li style={{ margin: "0 15px" }}>
           <Link
-            href="/tryError"
+            href="/tryErr"
             style={{
               color: "#f5f5f5",
               textDecoration: "none",
