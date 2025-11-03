@@ -149,6 +149,21 @@ const Dashboard = () => {
               Intercipting routes v2
             </Link>
             </li>
+             <li>
+            <Link
+              href="/tryErr"
+              style={{
+                color: "#f5f5f5",
+                textDecoration: "none",
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                transition: "color 0.3s ease",
+              }}
+              
+            >
+              Try Error
+            </Link>
+            </li>
         </ul>
       </nav>
     </div>
