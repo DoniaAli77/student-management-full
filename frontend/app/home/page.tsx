@@ -75,7 +75,7 @@ const Dashboard = () => {
           </li>
           <li>
             <Link
-              href="/enrollments"
+              href="/parallel-routes"
               style={{
                 color: "#f5f5f5",
                 textDecoration: "none",
@@ -85,7 +85,7 @@ const Dashboard = () => {
               }}
               
             >
-              Manage Enrollments
+            Parallel Routes
             </Link>
           </li>
           <li>

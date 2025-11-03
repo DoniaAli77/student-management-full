@@ -1,6 +1,7 @@
 // app/students/[id]/edit/page.tsx
-import { student } from "@/app/_lib/page";
+import { student } from "@/app/utils/types";
 import StudentForm from "@/app/components/studentForm";
+import axiosInstance from "@/app/utils/axiosInstance";
 type Params = Promise<{
   studentId: string;
 }>;
@@ -9,8 +10,8 @@ type Params = Promise<{
 export default async function EditStudentPage(props: { params: Params }) {
   const params = await props.params;
   const studentId = params.studentId;
-  const data = await fetch(`http://localhost:3000/students/${studentId}`);
-  const studentinfo:student=await data.json()
+  const response = await axiosInstance(`/students/${studentId}`);
+  const studentinfo:student=response.data
 
 
   return (
