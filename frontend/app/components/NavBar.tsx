@@ -80,6 +80,19 @@ const Navbar = () => {
             Manage Enrollments
           </Link>
         </li>
+           </li>
+        <li style={{ margin: "0 15px" }}>
+          <Link
+            href="/tryError"
+            style={{
+              color: "#f5f5f5",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+          >
+            Try Error
+          </Link>
+        </li>
       </ul>
     </nav>
   );
