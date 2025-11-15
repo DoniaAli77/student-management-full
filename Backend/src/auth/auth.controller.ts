@@ -1,11 +1,16 @@
-import { Body, Controller, HttpStatus, Post, HttpException, Res, Req } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post, HttpException, Res, Req, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterRequestDto } from './dto/RegisterRequestDto';
 import { SignInDto } from './dto/SignInDto';
+import { AuthGuard } from './guards/authentication.guard';
+import { StudentService } from 'src/student/student.service';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private userService: StudentService) { }
+
+
+
   @Post('login')
   async signIn(@Body() signInDto: SignInDto, @Res({ passthrough: true }) res) {
     try {
@@ -13,7 +18,8 @@ export class AuthController {
 
       res.cookie('token', result.access_token, {
         httpOnly: true, // Prevents client-side JavaScript access
-        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        secure: false, // Use secure cookies in production
+        sameSite: 'lax',
         maxAge: 3600 * 1000, // Cookie expiration time in milliseconds
       });
       // Return success response
@@ -23,7 +29,7 @@ export class AuthController {
         user: result.payload,
       };
     } catch (error) {
-        console.log(error)
+      console.log(error)
       // Handle specific errors
       if (error instanceof HttpException) {
         throw error; // Pass through known exceptions
@@ -74,8 +80,24 @@ export class AuthController {
       );
     }
   }
-
   
+  @Get('me')
+  @UseGuards(AuthGuard) // your JWT guard reads token from cookie
+  async getMe(@Req() req: any) {
+    const userId = req.user.userid; // or req.user.id depending on your payload
+    const user = await this.userService.findById(userId);
+    // map to DTO so you don't expose password, etc.
+    return {
+      id: userId,
+      name: user.name,
+      email: user.email,
+      age: user.age,
+      role: user.role,
+      // ...anything you need on profile
+    };
+  }
+
+
 
 
 }
