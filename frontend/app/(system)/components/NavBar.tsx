@@ -125,6 +125,19 @@ const Navbar = () => {
           </Link>
         </li>
 
+
+<li style={{ margin: "0 15px" }}>
+          <Link
+            href="/welcome"
+            style={{
+              color: "#f5f5f5",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+          >
+            Welcome
+          </Link>
+        </li>
         {!user && <Link href="/login" style={{
               color: "#f5f5f5",
               textDecoration: "none",

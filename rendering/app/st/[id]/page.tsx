@@ -3,3 +3,4 @@ export default async function st(params: Promise<{id: string}>){
     return <> {id}</>
 
 }
+
