@@ -1,9 +1,9 @@
-[00:00:04.226] Server  LOG      ✓ Ready in 3.2s
-[00:00:07.418] Server  LOG      ○ Compiling / ...
-[00:00:08.538] Server  LOG     hi from home home page render
-[00:00:11.931] Browser LOG     hi from home home page render
-[00:00:11.931] Browser LOG     [2;38;2;124;124;124m%s[0m hi from home home page render
-[00:00:11.931] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.868] Server  LOG      ✓ Ready in 2.1s
+[00:12:17.230] Server  LOG      ○ Compiling / ...
+[00:12:18.157] Server  LOG     hi from home home page render
+[00:12:21.095] Browser LOG     hi from home home page render
+[00:12:21.095] Browser LOG     [2;38;2;124;124;124m%s[0m hi from home home page render
+[00:12:21.095] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -33,17 +33,23 @@ It can also happen if the client has a browser extension installed which messes 
                       <RootLayout>
                         <html lang="en">
                           <body
--                           data-new-gr-c-s-check-loaded="14.1261.0"
+-                           data-new-gr-c-s-check-loaded="14.1263.0"
 -                           data-gr-ext-installed=""
                           >
                   ...
 
-[00:01:09.652] Browser LOG     hi from about Client page render
-[00:01:09.652] Browser LOG     [2;38;2;124;124;124m%s[0m hi from about Client page render
-[00:01:30.771] Server  LOG     hi from about Client page render
-[00:01:34.026] Browser LOG     hi from about Client page render
-[00:01:34.026] Browser LOG     [2;38;2;124;124;124m%s[0m hi from about Client page render
-[00:01:34.026] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:12:38.693] Server  LOG     hi from home home page render
+[00:12:40.354] Browser LOG     hi from home home page render
+[00:12:40.354] Browser LOG     [2;38;2;124;124;124m%s[0m hi from home home page render
+[00:13:06.882] Server  LOG     hi from about server page render
+[00:13:27.112] Browser LOG     hi from home home page render
+[00:13:27.112] Browser LOG     [2;38;2;124;124;124m%s[0m hi from home home page render
+[00:13:29.802] Browser LOG     hi from about Client page render
+[00:13:29.802] Browser LOG     [2;38;2;124;124;124m%s[0m hi from about Client page render
+[00:13:56.000] Server  LOG     hi from about Client page render
+[00:13:57.812] Browser LOG     hi from about Client page render
+[00:13:57.812] Browser LOG     [2;38;2;124;124;124m%s[0m hi from about Client page render
+[00:13:57.812] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -73,11 +79,10 @@ It can also happen if the client has a browser extension installed which messes 
                       <RootLayout>
                         <html lang="en">
                           <body
--                           data-new-gr-c-s-check-loaded="14.1261.0"
+-                           data-new-gr-c-s-check-loaded="14.1263.0"
 -                           data-gr-ext-installed=""
                           >
                   ...
 
-[00:02:06.776] Browser LOG     hi from home home page render
-[00:02:06.776] Browser LOG     [2;38;2;124;124;124m%s[0m hi from home home page render
-[00:02:08.373] Server  LOG     hi from about server page render
+[00:14:08.402] Browser LOG     hi from home home page render
+[00:14:08.402] Browser LOG     [2;38;2;124;124;124m%s[0m hi from home home page render

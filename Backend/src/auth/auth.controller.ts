@@ -20,7 +20,7 @@ export class AuthController {
         httpOnly: true, // Prevents client-side JavaScript access
         secure: false, // Use secure cookies in production
         sameSite: 'lax',
-        maxAge: 3600 * 1000, // Cookie expiration time in milliseconds
+        maxAge: 60* 1000, // Cookie expiration time in milliseconds
       });
       // Return success response
       return {

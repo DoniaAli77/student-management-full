@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./(system)/components/NavBar";
-import NavBar from "./(system)/components/NavBar";
-import { AuthProvider } from "./(system)/context/authContext";
+// import Navbar from "./(system)/components/NavBar";
+// import NavBar from "./(system)/components/NavBar";
+// import { AuthProvider } from "./(system)/context/authContext";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -28,12 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <AuthProvider>
         
         {children}
-        
-        
-        </AuthProvider>
+           
       
       </body>
     </html>
