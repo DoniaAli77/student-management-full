@@ -1,0 +1,1 @@
+{"version":3,"sources":["turbopack:///[project]/app/st/[id]/page.tsx"],"sourcesContent":["export default async function st(params: Promise<{id: string}>){\r\n    const {id}=await params\r\n    return <> {id}</>\r\n\r\n}\r\n\r\n"],"names":[],"mappings":"qVAAe,eAAe,EAAG,CAA6B,EAC1D,GAAM,IAAC,CAAE,CAAC,CAAC,MAAM,EACjB,MAAO,CAAA,EAAA,EAAA,IAAA,EAAA,EAAA,QAAA,CAAA,WAAE,IAAE,IAEf"}

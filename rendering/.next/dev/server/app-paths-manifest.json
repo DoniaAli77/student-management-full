@@ -1,0 +1,5 @@
+{
+  "/aboutClient/page": "app/aboutClient/page.js",
+  "/aboutServer/page": "app/aboutServer/page.js",
+  "/page": "app/page.js"
+}

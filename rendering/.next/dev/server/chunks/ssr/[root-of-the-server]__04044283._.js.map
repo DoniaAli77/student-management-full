@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Eng.Donia/Desktop/Tut7/student-management/rendering/app/aboutServer/page.tsx"],"sourcesContent":["export default function about() {\r\n    console.log('hi from about server page render')\r\n    return (<>hi from about Server</>)\r\n}   "],"names":[],"mappings":";;;;;;AAAe,SAAS;IACpB,QAAQ,GAAG,CAAC;IACZ,qBAAQ;kBAAE;;AACd","debugId":null}}]
+}

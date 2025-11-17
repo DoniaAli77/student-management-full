@@ -1,0 +1,1 @@
+{"version":3,"sources":["turbopack:///[project]/app/aboutServer/page.tsx"],"sourcesContent":["export default function about() {\r\n    console.log('hi from about server page render')\r\n    return (<>hi from about Server</>)\r\n}   "],"names":[],"mappings":"qVAAe,SAAS,IAEpB,OADA,QAAQ,GAAG,CAAC,oCACJ,CAAA,EAAA,EAAA,GAAA,EAAA,EAAA,QAAA,CAAA,UAAE,wBACd"}

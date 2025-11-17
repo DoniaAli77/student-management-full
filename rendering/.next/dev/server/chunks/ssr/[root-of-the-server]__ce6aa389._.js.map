@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Eng.Donia/Desktop/Tut7/student-management/rendering/app/page.tsx"],"sourcesContent":["'use client'\nimport Link from \"next/link\";\nexport default function Home() {\n  let [state, setState] = (\"home page state\");\n  console.log('hi from home home page render')\n  return (<><Link href='/aboutClient'>Client</Link>\n  \n  <Link href='/aboutServer'>Server</Link>\n  \n  </>)\n}"],"names":[],"mappings":";;;;;AACA;AADA;;;AAEe,SAAS;IACtB,IAAI,CAAC,OAAO,SAAS,GAAI;IACzB,QAAQ,GAAG,CAAC;IACZ,qBAAQ;;0BAAE,8OAAC,uKAAI;gBAAC,MAAK;0BAAe;;;;;;0BAEpC,8OAAC,uKAAI;gBAAC,MAAK;0BAAe;;;;;;;;AAG5B","debugId":null}}]
+}

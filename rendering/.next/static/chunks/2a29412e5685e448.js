@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,73754,t=>{"use strict";var e=t.i(43476),o=t.i(71645);function i(){let[t,i]=(0,o.useState)("about page state");return console.log("hi from about Client page render"),(0,e.jsx)(e.Fragment,{children:"hi from about Client"})}t.s(["default",()=>i])}]);
