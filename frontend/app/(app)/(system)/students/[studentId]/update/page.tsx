@@ -1,7 +1,7 @@
 // app/students/[id]/edit/page.tsx
 import { student } from "@/app/utils/types";
 import StudentForm from "@/app/(app)/(system)/components/studentForm";
-import axiosInstance from "@/app/utils/ApiClient";
+import apiServer from "@/app/utils/ApiServer";
 type Params = Promise<{
   studentId: string;
 }>;
@@ -10,6 +10,7 @@ type Params = Promise<{
 export default async function EditStudentPage(props: { params: Params }) {
   const params = await props.params;
   const studentId = params.studentId;
+  const axiosInstance=(await apiServer())
   const response = await axiosInstance(`/students/${studentId}`);
   const studentinfo:student=response.data
 

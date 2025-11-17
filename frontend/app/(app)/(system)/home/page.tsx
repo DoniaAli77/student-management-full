@@ -96,7 +96,7 @@ const Dashboard = async () => {
             Parallel Routes
             </Link>
           </li> */}
-          <li>
+          {/* <li>
             <Link
               href="/login"
               style={{
@@ -110,8 +110,8 @@ const Dashboard = async () => {
             >
               Login
             </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link
               href="/register"
               style={{
@@ -125,7 +125,7 @@ const Dashboard = async () => {
             >
               Register
             </Link>
-            </li>
+            </li> */}
 
             <li>
             <Link

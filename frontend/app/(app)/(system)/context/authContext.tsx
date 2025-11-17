@@ -7,8 +7,8 @@ import {
   useState,
   ReactNode,
 } from "react";
-import axiosInstance from "@/app/utils/ApiClient";
-import { useRouter } from "next/navigation";
+import axiosInstance, { registerUnauthorizedHandler } from "@/app/utils/ApiClient";
+import { usePathname, useRouter } from "next/navigation";
 
 type User = {
   id: string;
@@ -31,6 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router= useRouter()
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
 
   const fetchMe = async () => {
     try {
@@ -38,9 +39,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(res.data);
       console.log('fetch me',res)
     } catch {
-
-      // setUser(null); / bt3ml moshkela 2no comonent get referehed
-      router.replace('/login')// aw aw fe pages n check if !user redirect to login 
+      setUser(null); 
     } finally {
       setLoading(false);
     }
@@ -48,13 +47,48 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     fetchMe();
-  }, [user]); // is it righ to refresh on changing user
+  }, []); // is it righ to refresh on changing user
+
+
+ useEffect(() => {
+  const handleUnauthorized = () => {
+    console.log('registering unauthorized handler')
+    setUser(null);
+    router.replace("/login");
+    return
+  };
+
+  // Register this function with the axios file
+  registerUnauthorizedHandler(handleUnauthorized);
+}, [router]);
+
+
+  // 2️⃣ Revalidate auth on every route change
+  useEffect(() => {
+    // pathname is undefined on very first render sometimes - just guard
+    if (!pathname) return;
+    console.log("Route changed, revalidating /auth/me",pathname);
+    // We do NOT touch `loading` here, to avoid global spinner flicker
+    axiosInstance
+      .get("/auth/me")
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch(() => {
+        // If cookie expired → /auth/me fails → user becomes null
+        setUser(null);
+        // optional: you *can* redirect here if you want auto-kick:
+       router.replace("/login");
+      });
+  }, [pathname]); 
 
   // 2️⃣ Login: call Nest, it sets cookie, then refresh user
   const login = async (email: string, password: string) => {
     await axiosInstance.post("/auth/login", { email, password });
     await fetchMe(); // now /auth/me should return the logged-in user
   };
+
+
 
   // 3️⃣ Logout: clear cookie in backend, clear user in frontend
   const logout = async () => {
@@ -64,6 +98,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // even if request fails, we clear UI state
     }
     setUser(null);
+    router.replace("/login");
+
   };
 
   const value: AuthContextType = {
@@ -71,6 +107,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     loading,
     login,
     logout,
+    
+
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

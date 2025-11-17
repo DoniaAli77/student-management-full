@@ -20,7 +20,7 @@ export class AuthController {
         httpOnly: true, // Prevents client-side JavaScript access
         secure: false, // Use secure cookies in production
         sameSite: 'lax',
-        maxAge: 60* 1000, // Cookie expiration time in milliseconds
+        maxAge: 60 * 1000, // Cookie expiration time in milliseconds
       });
       // Return success response
       return {
@@ -80,7 +80,7 @@ export class AuthController {
       );
     }
   }
-  
+
   @Get('me')
   @UseGuards(AuthGuard) // your JWT guard reads token from cookie
   async getMe(@Req() req: any) {
@@ -97,7 +97,19 @@ export class AuthController {
     };
   }
 
+  @Post('logout')
+  @UseGuards(AuthGuard) // your JWT guard reads token from cookie
+  logout(@Res({ passthrough: true }) res) {
+    // Clear the cookie by setting it to empty and expired
+    res.cookie('token', '', {
+      httpOnly: true,
+      secure: true,        // set false only in dev if not using HTTPS
+      sameSite: 'strict',
+      expires: new Date(0), // expire immediately
+    });
 
+    return res.status(200).json({ message: 'Logged out successfully' });
+  }
 
 
 }

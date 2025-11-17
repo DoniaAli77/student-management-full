@@ -15,7 +15,7 @@ import { StudentListItemDTO } from './dto/StudentListItemDTO.dto';
 @Controller('students') // it means anything starts with /students
 export class StudentController {
     constructor(private studentService: StudentService, private courseService: CoursesService) { }
-    @Public()
+    // @Public()
     @Get()
     // Get all students
     async getAllStudents(): Promise<StudentListItemDTO[]> {

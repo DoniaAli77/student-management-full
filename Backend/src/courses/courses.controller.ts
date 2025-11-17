@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { course, courseDocument } from './models/course.schema';
 import { createCourseDTo } from './dto/createCourse.dto';
 import { updateCourseDTo } from './dto/updateCourse.dto';
-//  @UseGuards(AuthGuard) //class level
+import { AuthGuard } from 'src/auth/guards/authentication.guard';
+ @UseGuards(AuthGuard) //class level
 @Controller('courses')
 export class CoursesController {
     constructor(private courseService: CoursesService) { }

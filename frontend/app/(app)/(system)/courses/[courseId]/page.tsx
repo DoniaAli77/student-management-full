@@ -1,5 +1,6 @@
+
 import { course } from "@/app/_lib/page";
-import axiosInstance from "@/app/utils/ApiClient";
+import apiServer from "@/app/utils/ApiServer";
 
 export default async function CourseDetailsPage({
   params,
@@ -7,7 +8,8 @@ export default async function CourseDetailsPage({
   params: Promise<{ courseId: string }>;
 }) {
   const { courseId } = await params;
-  const response = await axiosInstance<course>(`/courses/${courseId}`);
+  const axiosInstance=(await apiServer())
+  const response =await axiosInstance.get(`/courses/${courseId}`)  ;
   const courseInfo:course=response.data
 
 

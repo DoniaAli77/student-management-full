@@ -1,7 +1,7 @@
 // app/students/[id]/edit/page.tsx
 import { course } from "@/app/utils/types";
 import CourseForm from "@/app/(app)/(system)/components/CourseForm";
-import axiosInstance from "@/app/utils/ApiClient";
+import apiServer from "@/app/utils/ApiServer";
 type Params = Promise<{
   courseId: string;
 }>;
@@ -10,6 +10,7 @@ type Params = Promise<{
 export default async function EditCoursePage(props: { params: Params }) {
   const params = await props.params;
   const courseId = params.courseId;
+  const axiosInstance=(await apiServer())
   const response = await axiosInstance(`/courses/${courseId}`);
   const courseInfo:course=response.data
   console.log('hi2',courseInfo)

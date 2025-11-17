@@ -1,7 +1,7 @@
 // app/students/[id]/page.tsx
 
 import { student } from "@/app/_lib/page";
-import axiosInstance from "@/app/utils/ApiClient";
+import apiServer from "@/app/utils/ApiServer";
 
 export default async function StudentDetailsPage({
   params,
@@ -11,8 +11,9 @@ export default async function StudentDetailsPage({
   }>;
 }) {
 
-  const r = await params;
-  const response = await axiosInstance<student>(`/students/${r.studentId}`);
+  const {studentId} = await params;
+  const axiosInstance=(await apiServer())
+  const response = await axiosInstance<student>(`/students/${studentId}`);
   const studentInfo=response.data
 
 
@@ -22,7 +23,7 @@ export default async function StudentDetailsPage({
       <div className="bg-[#1f1f1f] p-6 rounded-lg shadow-lg w-full max-w-md">
       <p className="text-lg">Details for student </p>
 
-        <p className="text-lg">ID: {r.studentId}</p>
+        <p className="text-lg">ID: {studentId}</p>
         <p className="text-lg">Name: {studentInfo.name}</p>
         <p className="text-lg">Age:  {studentInfo.age}</p>
 
