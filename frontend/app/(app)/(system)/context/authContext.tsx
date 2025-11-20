@@ -66,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // 2️⃣ Revalidate auth on every route change
   useEffect(() => {
     // pathname is undefined on very first render sometimes - just guard
-    if (!pathname) return;
+    if (!pathname || pathname=='/login' || pathname=='/register' ) return;
     console.log("Route changed, revalidating /auth/me",pathname);
     // We do NOT touch `loading` here, to avoid global spinner flicker
     axiosInstance
