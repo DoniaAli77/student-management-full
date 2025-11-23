@@ -6,7 +6,7 @@ import { useAuth } from "../context/authContext";
 import { LogoutButton } from "./logOut";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user ,login} = useAuth();
   // console.log("Navbar user:", user);
   // if(!user){
   //   console.log("No user in Navbar");

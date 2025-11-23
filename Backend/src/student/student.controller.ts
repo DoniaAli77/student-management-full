@@ -11,7 +11,7 @@ import { CoursesService } from 'src/courses/courses.service';
 import { courseDocument } from 'src/courses/models/course.schema';
 import { StudentListItemDTO } from './dto/StudentListItemDTO.dto';
 
-// @UseGuards(AuthGuard) //class level
+@UseGuards(AuthGuard) //class level
 @Controller('students') // it means anything starts with /students
 export class StudentController {
     constructor(private studentService: StudentService, private courseService: CoursesService) { }

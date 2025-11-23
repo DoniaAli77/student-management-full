@@ -95,8 +95,7 @@ export default function LoginPage() {
             className="w-full rounded-lg bg-white text-black font-semibold py-2 transition hover:bg-neutral-200 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
+   </button>        </form>
 
         {/* Footer */}
         <p className="mt-5 text-center text-neutral-400 text-sm">

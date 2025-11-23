@@ -7,7 +7,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import axiosInstance, { registerUnauthorizedHandler } from "@/app/utils/ApiClient";
+import axiosInstance, { registerUnauthenticatedHandler } from "@/app/utils/ApiClient";
 import { usePathname, useRouter } from "next/navigation";
 
 type User = {
@@ -51,15 +51,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 
  useEffect(() => {
-  const handleUnauthorized = () => {
+  const handleUnauthenticated= () => {
     console.log('registering unauthorized handler')
     setUser(null);
     router.replace("/login");
     return
   };
-
   // Register this function with the axios file
-  registerUnauthorizedHandler(handleUnauthorized);
+  registerUnauthenticatedHandler(handleUnauthenticated);
 }, [router]);
 
 

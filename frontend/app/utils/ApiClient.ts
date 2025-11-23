@@ -1,42 +1,32 @@
 // utils/axiosInstance.ts
-
 "use client";
-
 import axios from 'axios';
-import { useAuth } from '../(app)/(system)/context/authContext';
 import { redirect } from 'next/navigation';
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3000", // Use environment variable for base URL
   withCredentials: true, // Include cookies if needed
 
-
 })
-
 // This variable will hold the function that AuthContext gives us
-let onUnauthorized: (() => void);
-
+let onUnAuthenticated: (() => void);
 // AuthContext will call this later
-export function registerUnauthorizedHandler(handler: () => void) {
-  onUnauthorized = handler;
+export function registerUnauthenticatedHandler(handler: () => void) {
+  onUnAuthenticated = handler;
 }
-
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const status = error?.response?.status;
     console.log('error status', status);
-    if (status === 403 && !window.location.href.includes('/login')&& !window.location.href.includes('/register')) {
+    if (status === 403 && !window.location.href.includes('/login') 
+      && !window.location.href.includes('/register')) {
       redirect('/unauthorized')
-      // window.location.href = '/login';
+    }
+    if ((status === 401) && !window.location.href.includes('/login')
+       && !window.location.href.includes('/register')) {
+      onUnAuthenticated();
 
     }
-
-    if ((status === 401) && !window.location.href.includes('/login') &&!window.location.href.includes('/register')) {
-      onUnauthorized();
-      // window.location.href = '/login';
-
-    }
-
     return Promise.reject(error);
   }
 );
